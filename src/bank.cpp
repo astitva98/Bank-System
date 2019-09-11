@@ -38,6 +38,10 @@ bool Bank::openAccount(User u , int ac_type , int acno , string pass , string c1
 	return true;
 }
 
+Card Bank::getCard(int indx){
+	return cards[indx];
+}
+
 int Bank::findCard(string cNo){
 	for(int i=0;i<2*MAX_ACCS;i++){
 		if(cards[i].getCardNo() == cNo)	return i;

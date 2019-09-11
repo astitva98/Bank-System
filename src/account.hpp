@@ -22,10 +22,11 @@ class Account{
 	float balance;
 	Transaction* transactions;
 	string secret;
+
 public:
 	Account(void);
-	void newAccount(User u , int ac_type , int acno , string pass , Card card1 , Card card2 , string c1 , string c2);
-
+	void newAccount(User u , int ac_type , int acno , string pass , Card& card1 , Card& card2 , string c1 , string c2);
+	bool makeWithdraw(float amount);
 	// ~Account();
 	void endAccount( string pass);
 	int getTransactionCount();
@@ -39,6 +40,9 @@ public:
 	void getDetails(string pass);
 	int getAcno();
 	int getTrans();
+
+
+	
 	// void getTransactions();
 };
 
@@ -58,6 +62,7 @@ public:
 	void newCard(Account* ac , string c1 , int type);
 	string getCardNo();
 	int cType;
+	void makeWithdraw(string pass , float amount);
 
 };
 

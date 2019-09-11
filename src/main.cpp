@@ -255,16 +255,46 @@ void accountHistory(Bank& bank){
 	// }
 }
 
+void cardWithdraw(Bank& bank){
+	string cno;
+	cout<<"\nPlease enter your card number\n";
+	cin>>cno;
+	int indx = bank.findCard(cno);
+
+	if(indx==-1){
+		cout<<"\nWrong Cardno\n";
+		return;
+	}
+	string pass;
+	cout<<"\nEnter the passcode\n";
+	string secret;
+	float amount;
+	cin>>secret;
+	cout<<"\nEnter the amount\n";
+	cin>>amount;
+	Card temp = bank.getCard(indx);
+
+	temp.makeWithdraw(secret , amount);
+
+
+
+
+	return;
+
+
+}
+
 void menu(){
-	cout<< "\n\n------------------------------------------\n";
-	cout<< "| Press E to close the application       |\n";
-	cout<< "| Press N to open new account            |\n";
-	cout<< "| Press C to close the account           |\n";
-	cout<< "| Press W to withdraw money              |\n";
-	cout<< "| Press D to deposit money               |\n";
-	cout<< "| Press I to get account info            |\n";
-	cout<< "| Press H to get your transaction history|\n";
-	cout<< "------------------------------------------\n\n\n";
+	cout<< "\n\n-------------------------------------------------\n";
+	cout<< "| Press E to close the application              |\n";
+	cout<< "| Press N to open new account                   |\n";
+	cout<< "| Press C to close the account                  |\n";
+	cout<< "| Press W to withdraw money by account password |\n";
+	cout<< "| Press V to withdraw money by card             |\n";
+	cout<< "| Press D to deposit money                      |\n";
+	cout<< "| Press I to get account info                   |\n";
+	cout<< "| Press H to get your transaction history       |\n";
+	cout<< "-------------------------------------------------\n\n\n";
 	return;
 }
 
@@ -286,6 +316,10 @@ int main(){
 			}
 			case 'N' : {
 				newAccount(bank);
+				break;
+			}
+			case 'V' : {
+				cardWithdraw(bank);
 				break;
 			}
 			case 'C' : {

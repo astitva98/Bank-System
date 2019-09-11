@@ -20,6 +20,8 @@ public:
 	int findAccount(int acno1);
 	Account* getAccount(int indx);
 	int findCard(string cNo);
+	Card getCard(int indx);
+
 
 };
 

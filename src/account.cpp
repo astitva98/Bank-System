@@ -15,7 +15,7 @@ Account::Account(void){
 
 }
 
-void Account::newAccount(User us , int ac_type , int acno1 , string pass , Card card1 , Card card2 , string c1 , string c2){
+void Account::newAccount(User us , int ac_type , int acno1 , string pass , Card& card1 , Card& card2 , string c1 , string c2){
 
 	u = us;
 	acno = acno1;
@@ -172,8 +172,8 @@ void Card::endCard(){
 		cvv = "";
 		secret = "";
 		expiry = "";
-		limit = 0.0f;
-		rate = 0.0f;
+		// limit = 0.0f;
+		// rate = 0.0f;
 
 }
 
@@ -182,7 +182,28 @@ string Card::getCardNo(){
 	return cardNo;
 }
 
+bool Account::makeWithdraw(float amount){
+	return this->makeWithdraw(this->secret , amount);
+}
 
+void Card::makeWithdraw(string pass , float amount){
+
+	if(pass == secret){
+		if(account->makeWithdraw(amount)){
+			cout<<"\nWithdraw Sucessful\n";
+
+		}
+		else{
+			cout<<"\nInsufficiant Funds\n";
+		}
+		return;
+	}
+	else{
+		cout<<"\nWrong Password\n";
+	}
+	return;
+
+}
 
 void Card::newCard(Account* ac , string c1 , int type){
 	account = ac;
@@ -197,11 +218,11 @@ void Card::newCard(Account* ac , string c1 , int type){
 	else
 		cout<<"\nEnter the password for your credit card\n";
 
-	if(type == 1)
-		limit = 0.0f;
-	else
-		limit = 500000.0f;
-	rate = 5.5f
+	// if(type == 1)
+	// 	// limit = 0.0f;
+	// else
+	// 	limit = 500000.0f;
+	// rate = 5.5f
 
 	cin>>secret;
 
